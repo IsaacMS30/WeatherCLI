@@ -1,5 +1,6 @@
 import click
 from weathercli.services.geocoding import get_coordinates
+from weathercli.services.weather import get_weather_data
 
 # TODO(me): Do help commands
 
@@ -20,6 +21,7 @@ def current(city: str, country: str):
     
     click.echo(f"Latitude: {coordinates["latitude"]}, longitude: {coordinates["longitude"]}")
     # Request information from API
-    #information = get_weather_data(latitude, longitude)
+    weather_info = get_weather_data(coordinates["latitude"], coordinates["longitude"])
+    click.echo(f"{weather_info}")
     # Format output
 
