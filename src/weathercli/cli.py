@@ -1,4 +1,5 @@
 import click
+from weathercli.services.geocoding import get_coordinates
 
 # TODO(me): Do help commands
 
@@ -12,6 +13,12 @@ def cli():
 def current(city: str, country: str):
     click.echo(f"Country: {country}, city: {city}")
     # Get coordanates from the place
+    coordinates = get_coordinates(city, country)
+
+    if "error" in coordinates or coordinates is None:
+        click.echo(f"Could not found coordinates for {city}, {country}")
+    
+    
     # Request information from API
     # Format output
 
