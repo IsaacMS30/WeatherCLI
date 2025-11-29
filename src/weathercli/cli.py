@@ -11,14 +11,15 @@ def cli():
 @click.argument('city', nargs = 1)
 @click.argument('country', nargs = 1)
 def current(city: str, country: str):
-    click.echo(f"Country: {country}, city: {city}")
+    click.echo(f"Obtaining weather information...")
     # Get coordanates from the place
     coordinates = get_coordinates(city, country)
 
     if "error" in coordinates or coordinates is None:
         click.echo(f"Could not found coordinates for {city}, {country}")
     
-    
+    click.echo(f"Latitude: {coordinates["latitude"]}, longitude: {coordinates["longitude"]}")
     # Request information from API
+    #information = get_weather_data(latitude, longitude)
     # Format output
 
