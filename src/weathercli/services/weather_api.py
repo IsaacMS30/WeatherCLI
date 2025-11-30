@@ -15,7 +15,7 @@ def get_weather_data(lat: float, lon: float) -> dict:
     
     return data["current_weather"]
 
-def get_weather_forecast(lat: float, lon: float, days: int = 3):
+def get_weather_forecast(lat: float, lon: float, days: int = 3) -> dict:
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
         "latitude": lat,
