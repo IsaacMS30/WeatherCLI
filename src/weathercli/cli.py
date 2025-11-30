@@ -1,6 +1,6 @@
 import click
 from weathercli.services.geocoding import get_coordinates
-from weathercli.services.weather import get_weather_data
+from weathercli.services.weather_api import get_weather_data, get_weather_forecast
 from weathercli.presentation.formatter import format_current_weather
 
 # TODO(me): Do help commands
@@ -42,6 +42,13 @@ def forecast(city: str, country:str, days:int) -> None:
     # Verify days parameter
     if days < 1 or days > 7:
         raise click.BadParameter("Days must be between 1 and 7")
-    # Get coordenates for the place
+
+    # Get coordanates from the place
+    coordinates = get_coordinates(city, country)
+
+    if "error" in coordinates or coordinates is None:
+        click.echo(f"Could not found coordinates for {city}, {country}")
+        return
     # Request information from API
+    forecast_data = get_weather_forecast(coordinates["latitude"], coordinates["longitude"], days)
     # Format output
