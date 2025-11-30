@@ -22,6 +22,6 @@ def current(city: str, country: str):
     click.echo(f"Latitude: {coordinates["latitude"]}, longitude: {coordinates["longitude"]}")
     # Request information from API
     weather_info = get_weather_data(coordinates["latitude"], coordinates["longitude"])
-    click.echo(f"{weather_info}")
+    click.echo(weather_info)
     # Format output
 
