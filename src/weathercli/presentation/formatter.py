@@ -34,6 +34,6 @@ def format_current_weather(weather_data: dict, city: str, country: str) -> None:
     table.add_row("Temperature", f"[{temp_color}]{weather_data['temperature']} °C[/]")
     table.add_row("Wind speed", f"{weather_data["windspeed"]} km/h")
     table.add_row("Wind direction", f"{weather_data["winddirection"]}°")
-    table.add_row("Time", weather_data["time"])
+    table.add_row("Time", "☀️" if weather_data["is_day"] else "🌙")
 
     console.print(table)

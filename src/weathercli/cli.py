@@ -9,10 +9,11 @@ from weathercli.presentation.formatter import format_current_weather
 def cli():
     """WeatherCLI - A simple command line weather tool."""
 
+
 @cli.command()
 @click.argument('city', nargs = 1)
 @click.argument('country', nargs = 1)
-def current(city: str, country: str):
+def current(city: str, country: str) -> None:
     click.echo(f"Obtaining weather information...\n\n")
 
     # Get coordanates from the place
@@ -31,3 +32,16 @@ def current(city: str, country: str):
 
     # Format output
     format_current_weather(weather_data, city, country)
+
+
+@cli.command()
+@click.argument('city', nargs = 1)
+@click.argument('country', nargs = 1)
+@click.option("--days", default=3, help="Number of days to show (max 7)")
+def forecast(city: str, country:str, days:int) -> None:
+    # Verify days parameter
+    if days < 1 or days > 7:
+        raise click.BadParameter("Days must be between 1 and 7")
+    # Get coordenates for the place
+    # Request information from API
+    # Format output
