@@ -14,6 +14,12 @@ def cli():
 @click.argument('city', nargs = 1)
 @click.argument('country', nargs = 1)
 def current(city: str, country: str) -> None:
+    """
+    Show the current weather for a given CITY and COUNTRY.
+
+    Retrieves real-time conditions including temperature,
+    wind speed, and a descriptive weather code.
+    """
     click.echo(f"Obtaining weather information...\n\n")
 
     # Get coordanates from the place
@@ -39,6 +45,13 @@ def current(city: str, country: str) -> None:
 @click.argument('country', nargs = 1)
 @click.option("--days", default=3, help="Number of days to show (max 7)")
 def forecast(city: str, country:str, days:int) -> None:
+    """
+    Show the daily weather forecast for the next N days.
+
+    Displays min/max temperature and weather code description
+    for each day.
+    """
+
     # Verify days parameter
     if days < 1 or days > 7:
         raise click.BadParameter("Days must be between 1 and 7")
